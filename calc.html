@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calc</title>
+
+    <style>
+       
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .title{
+            position: absolute;
+            top: 80px;
+            text-align: center;
+        }
+
+        .title span{
+            font-size: 35px;
+            font-family: 'Clicker Script', cursive;
+            color: rgb(32, 30, 30);
+        }
+
+        .calculator {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+        }
+
+        #display {
+            width: 100%;
+            height: 48px;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+            outline: none;
+            margin-bottom: 8px;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e0e0e0;
+        }
+
+        input,button{
+            font-family: cursive;
+        }
+    </style>
+
+</head>
+
+<body>
+
+        <div class="title"><span>Calculator</span></div>
+
+        <div class="calculator">
+            
+            
+
+            <input type="text" id="display" disabled>
+            <div class="buttons">
+                <button onclick="clearDisplay()">C</button>
+                <button onclick="appendValue('(')">(</button>
+                <button onclick="appendValue(')')">)</button>
+                <button onclick="appendValue('/')">/</button>
+
+                <button onclick="appendValue('7')">7</button>
+                <button onclick="appendValue('8')">8</button>
+                <button onclick="appendValue('9')">9</button>
+                <button onclick="appendValue('*')">*</button>
+
+                <button onclick="appendValue('4')">4</button>
+                <button onclick="appendValue('5')">5</button>
+                <button onclick="appendValue('6')">6</button>
+                <button onclick="appendValue('-')">-</button>
+              
+                <button onclick="appendValue('1')">1</button>
+                <button onclick="appendValue('2')">2</button>
+                <button onclick="appendValue('3')">3</button>
+                <button onclick="appendValue('+')">+</button>
+                
+                <button onclick="appendValue('%')">%</button>
+               
+                <button onclick="appendValue('0')">0</button>
+                <button onclick="appendValue('.')">.</button>
+                <button onclick="calculate()">=</button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+
+    
+
+</body>
+
+<script>
+
+    var expression = "";
+
+    function appendValue(value) {
+        expression += value;
+        updateDisplay();
+    }
+
+    function clearDisplay() {
+        expression = "";
+        updateDisplay();
+    }
+
+    function calculate() {
+        try {
+            const result = eval(expression);
+            expression = String(result);
+            updateDisplay();
+        } catch (error) {
+            expression = "Error";
+            updateDisplay();
+        }
+    }
+
+    function updateDisplay() {
+        document.getElementById("display").value = expression;
+    }
+
+
+
+</script>
+
+</html>

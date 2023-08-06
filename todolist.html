@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo</title>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .main {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 100px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            width: 320px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .todo-container {
+            display: flex;
+            gap: 8px;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        ul {
+            margin-top: 16px;
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        .list{
+            font-family: cursive;
+        }
+
+        .delete-button {
+            padding: 8px 20px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <div class="main">
+        <h1 style="font-family: cursive;">Todo List</h1>
+        <div class="todo-container">
+            <input type="text" id="todo-input" placeholder="Add your task" style="font-family: cursive;">
+            <button onclick="addTodo()">Add</button>
+        </div>
+        <ul id="todo-list"></ul>
+    </div>
+
+
+    <script>
+
+        const todoList = document.getElementById('todo-list');
+        const todoInput = document.getElementById('todo-input');
+
+        function addTodo() {
+            const task = todoInput.value.trim();
+            if (task !== '') {
+                const li = document.createElement('li');
+
+                li.innerHTML = `
+                        <span class="list">${task}</span>
+                        <button class="delete-button" onclick="deleteTodo()">Delete</button>`;
+
+                todoList.appendChild(li);
+                todoInput.value = '';
+            }
+        }
+
+        function deleteTodo() {
+            const listItem = event.target.parentNode;
+            todoList.removeChild(listItem);
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>
